@@ -19,7 +19,7 @@ public class Main {
     private static float applicationStartTime = 0f;
     private static float applicationFinishTime = 0f;
 
-    private static boolean isNeededLog = false;
+    private static boolean isNeededLog = false; // переменная использующая для вывода логов
 
     private final static Scanner scanner = new Scanner(System.in);
 
@@ -29,7 +29,17 @@ public class Main {
         int choose = scanner.nextInt();
 
         System.out.print("Нужны ли вам логи? Если да то введите 1, если нет, то ноль: ");
-        if (scanner.nextInt() == 1) isNeededLog = true;
+        if (scanner.nextInt() == 1) {
+            isNeededLog = true;
+            System.out.println("Пояснение к выводу логов.");
+            System.out.println("App (Заявка): {Начальяное время заявки} {Время обсулживания заявки} " +
+                    "{Время завершения обслуживания заявки}");
+            System.out.println("Can (Отмена): {Начальяное время отказа} {Время обсулживания отказа} " +
+                    "{Время завершения обслуживания отказа} {Тип отказа}");
+        }
+
+        System.out.println("Fin (Окончательное время обработки): {Начальяное время заявки} " +
+                "{Время обсулживания заявки} {Время завершения обслуживания заявки}");
 
         if (choose == 1) {
             defineVariables();
@@ -78,11 +88,11 @@ public class Main {
     private static void application() {
         float z;
 
-        // define cancel start time
+        // define application start time
         z = (float) Math.random(); // ДСЧ
         applicationStartTime = applicationFinishTime - (float) (Math.log(z) / applicationIntensity);
 
-        // define cancel finish time
+        // define application finish time
         z = (float) Math.random(); // ДСЧ
         applicationFinishTime = applicationStartTime - (float) (Math.log(z) / serviceIntensity);
     }
